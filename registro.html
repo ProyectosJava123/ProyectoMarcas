@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="../../../../favicon.ico">
+
+        <title>Starter Template for Bootstrap</title>
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+        <!-- Custom styles for this template -->
+         <link rel="stylesheet" type="text/css" href="style.css">
+        <style type="text/css">
+            body {
+                padding-top: 5rem;
+            }
+
+            .starter-template {
+                padding: 3rem 1.5rem;
+                text-align: center;
+            }
+        </style>
+    </head>
+
+
+    <body>
+
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+            <a class="navbar-brand" href="index.html">Pagina encuestas</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Iniciar sesion</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Registrarse<span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main role="main" class="container">
+
+            <div class="starter-template">
+                <h1>Registro</h1>
+                <p class="lead">Rellena este formulario con tus datos para crear una cuenta nueva. Si ya tienes una cuenta creada pulsa <a href="index.html">aqui</a> para iniciar sesion.</p>
+                <div class="formularioc">
+                    <form id="form" action="comprobar_registro.php" method="post">
+                        <div class="form-group">
+                            <label for="nick">Nombre de usuario</label>
+                            <input  onfocus="return comprobarNick()" name="nick" onkeyup="return comprobarNick()" onblur="return comprobarNick()" required type="text" class="form-control" id="nick" aria-describedby="nickHelp" placeholder="Nick">
+                            <p style="visibility: hidden;" id="errorn" class="error">Error de formato en el nick</p>
+                        </div>
+                         <div class="form-group">
+                            <label for="email">Email</label>
+                            <input onfocus="return comprobarEmail()" name="email" onkeyup="return comprobarEmail()" onblur="return comprobarEmail()" required type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
+                             <p style="visibility:hidden;" id="errore" class="error">Error de formato en el email</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="pass">Contrase&ntilde;a</label>
+                            <input onfocus="return comprobarPass()" name="pass" onkeyup="return comprobarPass()" onblur="return comprobarPass()" required type="password" class="form-control" id="pass" placeholder="Contrase&ntilde;a">
+                            <p style="visibility:hidden;" id="errorp" class="error">Las contrase&ntilde;as no coinciden</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="pass2">Repite tu Contrase&ntilde;a</label>
+                            <input onfocus="return comprobarPass()" onkeyup="return comprobarPass()" onblur="return comprobarPass()" required type="password" class="form-control" id="pass2" placeholder="Contrase&ntilde;a">
+                            <p style="visibility:hidden;" id="errorp2" class="error">Las contrase&ntilde;as no coinciden</p>
+                        </div>
+                        <br>
+                    </form>
+                    <button onclick="return comprobarFormulario()" type="submit" class="btn btn-primary">Registrarse</button>
+                </div>
+            </div>
+
+        </main>
+        <!-- /.container -->
+        
+         <script type="text/javascript">
+
+            function comprobarFormulario(){
+                if (comprobarNick() & comprobarEmail() & comprobarPass()) {
+                    document.getElementById('form').submit(); 
+
+                } 
+            }
+
+            function comprobarNick(){
+                var nick = document.getElementById('nick').value;
+                
+                if(nick.match("^[a-zA-Z0-9_-]{4,20}$")){
+                    document.getElementById('errorn').style.visibility = "hidden";
+                    return true;
+                } else {
+                    document.getElementById('errorn').style.visibility = "visible";
+                    return false;
+                }
+            }
+             
+             function comprobarEmail(){
+                var email = document.getElementById('email').value;
+                
+                if(email.match("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$")){
+                    document.getElementById('errore').style.visibility = "hidden";
+                    return true;
+                } else {
+                    document.getElementById('errore').style.visibility = "visible";
+                    return false;
+                }
+            }
+             
+            function comprobarPass(){
+                var p1 = document.getElementById('pass').value;
+                var p2 = document.getElementById('pass2').value;
+                
+                if(p1 == p2 & p1 != ""){
+                    document.getElementById('errorp').style.visibility = "hidden";
+                    document.getElementById('errorp2').style.visibility = "hidden";
+                     return true;
+                } else {
+                    document.getElementById('errorp').style.visibility = "visible";
+                    document.getElementById('errorp2').style.visibility = "visible";
+                    return false;
+                }
+               
+            }
+             
+             
+
+            
+
+
+        </script>
+        
+        <!-- Bootstrap core JavaScript
+================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+
+    </body>
+</html>

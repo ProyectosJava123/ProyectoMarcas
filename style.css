@@ -1,0 +1,21 @@
+
+.formularioc {
+    margin: auto;
+    margin-top: 30px;
+    width: 50%;
+}
+
+.error {
+    color: crimson;
+    text-align: left;
+}
+
+
+
+.rb {
+    margin-right: 10px;
+}
+
+.formlarge {
+    width: 100%;
+}
